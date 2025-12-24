@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA Nexus | Register</title>
+    <style>
+        :root {
+            --nv-green: #76b900;
+            --nv-bg: #000000;
+            --nv-card: #0a0a0a;
+            --nv-border: #1a1a1a;
+            --text-dim: #888;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', 'Segoe UI', sans-serif; }
+
+        body {
+            background-color: var(--nv-bg);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-image: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+
+        .hider-check { display: none; }
+
+        .portal-wrapper {
+            width: 380px;
+            background: var(--nv-card);
+            border: 1px solid var(--nv-border);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+        }
+
+        .form-view {
+            padding: 45px 40px;
+            display: flex;
+            flex-direction: column;
+            min-height: 540px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--nv-border);
+            color: #fff;
+            font-size: 0.85rem;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        input:focus { border-bottom-color: var(--nv-green); }
+        input::placeholder { color: #444; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 1px; }
+
+        .eye-btn {
+            position: absolute;
+            right: 0;
+            top: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            opacity: 0.3;
+        }
+
+        .eye-open, .eye-closed { position: absolute; width: 100%; fill: none; stroke: #fff; stroke-width: 2; }
+        .eye-open { opacity: 0; }
+        .pwd-text { display: none; }
+
+        .hider-check:checked ~ .pwd-pass { display: none; }
+        .hider-check:checked ~ .pwd-text { display: block; }
+        .hider-check:checked ~ .eye-btn .eye-open { opacity: 1; stroke: var(--nv-green); }
+        .hider-check:checked ~ .eye-btn .eye-closed { opacity: 0; }
+
+        .spacer { flex-grow: 1; min-height: 40px; }
+
+        .btn-container { text-align: center; padding-bottom: 10px; }
+
+        .error-text {
+            color: red;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .action-btn {
+            width: 130px;
+            padding: 11px;
+            background: transparent;
+            color: var(--nv-green);
+            border: 1px solid var(--nv-green);
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .action-btn:hover {
+            background: var(--nv-green);
+            color: #000;
+            box-shadow: 0 0 20px rgba(118, 185, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .toggle-link {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .toggle-link:hover { color: #fff; }
+
+        /* ===== Plain Red Bold Error Text ===== */
+        .form-error {
+            display: none; /* hidden by default */
+            color: #ff4d4f; /* red text */
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 12px; /* space above button */
+        }
+
+        .form-error.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-wrapper">
+        <div class="form-view">
+            <h2>Register</h2>
+            <form action="/signup" method="POST" style="display:contents;">
+                {% if message %}
+                    <div class="alert">{{ message }}</div>
+                {% endif %}
+                <div class="input-group">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="checkbox" id="s-eye" class="hider-check">
+                    <input type="password" name="password" class="pwd-pass" placeholder="Password" required>
+                    <input type="text" class="pwd-text" placeholder="Password">
+                </div>
+
+
+                <div class="spacer"></div>
+
+                <!-- ===== Plain Red Bold Error Text Above Button ===== -->
+                <!-- ===== Plain Red Bold Error Text Above Button ===== -->
+
+
+                <div class="btn-container">
+                    <button type="submit" class="action-btn">Register</button>
+                </div>
+                {% if message %}
+                    <div class="error-text">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            </form>
+
+            <a href="/signin" class="toggle-link">Return to signin</a>
+        </div>
+    </div>
+
+    <!-- ===== Plain Red Bold Error Text Above Button ===== -->
+    
+                <!-- ===== Plain Red Bold Error Text Above Button ===== -->
+
+
+</body>
+</html>

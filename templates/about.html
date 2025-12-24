@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="1"> 
+    <title>Genboi | About</title>
+    <style>
+        :root {
+            --nv-green: #76b900;
+            --nv-green-dark: #0a1a00;
+            --nv-bg: #000;
+            --nv-border: #1a1a1a;
+            --card-outline: #222; /* Light Black / Charcoal for contrast */
+            --text-main: #fff;
+            --text-dim: #555;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--nv-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: radial-gradient(circle at center, #111 0%, #000 100%);
+            padding: 40px 20px;
+        }
+
+        /* --- HEADER --- */
+        .app-logo { font-size: 4.5rem; font-weight: 900; color: var(--nv-green); letter-spacing: -2px; }
+        
+        .developer-bar {
+            margin: 20px 0;
+            text-align: center;
+            border-top: 1px solid var(--nv-border);
+            border-bottom: 1px solid var(--nv-border);
+            padding: 15px 40px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .dev-name span { color: var(--nv-green); font-weight: 800; }
+
+        /* --- ABOUT BOX --- */
+        .desc { 
+            max-width: 650px; 
+            text-align: center; 
+            font-size: 0.95rem; 
+            color: #ccc; 
+            line-height: 1.6; 
+            padding: 20px;
+            margin-bottom: 30px; 
+        }
+
+        /* --- STACK CONTAINER BOX --- */
+        .stack-box {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--nv-border);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 800px;
+            margin-top: auto;
+            margin-bottom: 120px;
+        }
+
+        .stack-heading {
+            text-align: center;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .stack-heading h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--nv-green);
+            font-weight: 900;
+        }
+
+        .heading-line { height: 1px; width: 40px; background: var(--nv-border); }
+
+        /* --- GRID LOGIC --- */
+        .tech-row { display: grid; gap: 15px; margin-bottom: 15px; }
+        .row-4 { grid-template-columns: repeat(4, 1fr); }
+        .row-3 { grid-template-columns: repeat(3, 1fr); width: 85%; margin: 0 auto; }
+
+        /* --- OUTLINED CARDS --- */
+        .tech-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-outline); /* LIGHT BLACK OUTLINE */
+            padding: 15px 5px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tech-card:hover {
+            background-color: var(--nv-green-dark);
+            border-color: var(--nv-green); /* Switches to Green on Hover */
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(118, 185, 0, 0.1);
+        }
+
+        .t-name { font-size: 0.8rem; font-weight: 700; color: #fff; display: block; }
+        .t-role { font-size: 0.55rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; display: block; }
+        
+        .tech-card:hover .t-name { color: var(--nv-green); }
+
+        /* --- LIVE DOCK --- */
+        .live-dock {
+            position: fixed;
+            bottom: 0; width: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid var(--nv-border);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .time-display { font-size: 1.6rem; font-weight: 800; font-family: monospace; }
+        .meta-data { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-left: 10px; }
+        .uplink { display: flex; align-items: center; gap: 10px; color: var(--nv-green); font-size: 0.75rem; font-weight: bold; }
+        .dot { width: 6px; height: 6px; background: var(--nv-green); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        
+        .nav-btn { text-decoration: none; color: #fff; border: 1px solid #333; padding: 8px 20px; border-radius: 6px; font-size: 0.7rem; transition: 0.2s; }
+        .nav-btn:hover { background: var(--nv-green); color: #000; border-color: var(--nv-green); }
+    </style>
+</head>
+<body>
+
+    <h1 class="app-logo">Genboi</h1>
+    <p style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 4px; font-weight: bold;">NEURAL TERMINAL v25.00</p>
+
+    <div class="developer-bar">
+        <div class="dev-name">developer : <span>Akash Kumar</span></div>
+    </div>
+
+    <div class="desc">
+        <b>Genboi</b> is a generative AI bot optimized for high-speed synthesis. 
+        By bridging server-side Flask architecture with the <b>Gemini AI API</b>, 
+        it delivers seamless neural responses.
+        <br>
+        <span style="display:block; margin-top: 15px; font-size: 0.7rem; color: var(--nv-green); font-family: monospace; letter-spacing: 2px;">
+            SYSTEM_INIT: 23/12/2025 // 03:00 AM
+        </span>
+    </div>
+
+    <section class="stack-box">
+        <div class="stack-heading">
+            <div class="heading-line"></div>
+            <h2>Development Stack</h2>
+            <div class="heading-line"></div>
+        </div>
+
+        <div class="tech-row row-4">
+            <div class="tech-card"><span class="t-name">Gemini API</span><span class="t-role">Neural Engine</span></div>
+            <div class="tech-card"><span class="t-name">Python</span><span class="t-role">System Core</span></div>
+            <div class="tech-card"><span class="t-name">Flask</span><span class="t-role">Server Web</span></div>
+            <div class="tech-card"><span class="t-name">Supabase</span><span class="t-role">Cloud DB</span></div>
+        </div>
+        <div class="tech-row row-3">
+            <div class="tech-card"><span class="t-name">PostgreSQL</span><span class="t-role">Data Arch</span></div>
+            <div class="tech-card"><span class="t-name">HTML/CSS</span><span class="t-role">Visual UI</span></div>
+            <div class="tech-card"><span class="t-name">JavaScript</span><span class="t-role">Interface</span></div>
+        </div>
+    </section>
+
+    <footer class="live-dock">
+        <div>
+            <span class="time-display">{{ time }}</span>
+            <span class="meta-data">{{ date }}</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 30px;">
+            <div class="uplink">
+                <div class="dot"></div>
+                UPLINK: {{ location }}
+            </div>
+            <a href="/profile" class="nav-btn">EXIT</a>
+        </div>
+    </footer>
+
+</body>
+</html>
