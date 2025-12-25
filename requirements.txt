@@ -13,9 +13,5 @@ google-auth==2.43.0
 google-auth-httplib2==0.2.1
 google-genai==1.52.0
 google-generativeai==0.8.5
-<<<<<<< HEAD
 googleapis-common-protos==1.72.0
 gunicorn==23.0.0
-=======
-googleapis-common-protos==1.72.0
->>>>>>> 1eb6d24 (new changes to all over the project...)
