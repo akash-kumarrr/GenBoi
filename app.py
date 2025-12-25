@@ -92,4 +92,4 @@ def save_changes():
     return redirect(url_for('profile', name=session.get('active_name')))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
