@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="{{ favicon }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Core | New Chat</title>
+    <title>Genboi | Terminal</title>
     <style>
         :root {
             --accent: #76b900; /* NVIDIA Green */
@@ -331,6 +332,18 @@
         .clear-btn:hover { color: var(--nv-red); border-color: var(--nv-red); }
 
         svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+        @media (max-width: 768px) {
+            .chat-shell { width: 95vw; height: 80vh; }
+            .user-panel { 
+                left: 50%; 
+                transform: translateX(-50%); 
+                right: auto; 
+                bottom: 15px;
+                width: 90%;
+                max-width: 320px;
+            }
+        }
     </style>
 
     <style>
@@ -361,7 +374,7 @@
         <header class="chat-header">
             <div class="status-pill">
                 <div class="status-dot"></div>
-                Nexus Engine v2.0
+                GenBoi v25.00
             </div>
             <div style="font-weight: bold; font-size: 0.9rem; letter-spacing: 2px;">TERMINAL</div>
         </header>
@@ -369,7 +382,7 @@
         <div class="message-viewport" id="chat-viewport">
             <div class="msg-row msg-ai">
                 <span class="msg-label">System Synthesis</span>
-                <div class="bubble">Nexus Core initialized. All systems green. How can I assist your workflow today?</div>
+                <div class="bubble">Genboi initialized. All systems green. How can I assist your workflow today?</div>
             </div>
         </div>
 <!-- ===== USER CONTROL PANEL ===== -->

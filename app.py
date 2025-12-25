@@ -1,16 +1,30 @@
-from flask import *
+from flask import redirect, url_for, Flask, render_template, request, session, jsonify
 from server import *
 from chatbot import *
 from dotenv import load_dotenv
 import os 
+from datetime import datetime, date
+import requests
+
+response = requests.get('https://ipinfo.io/json')
+data = response.json()
 
 load_dotenv()
 
+create_table()
 
 key = ''
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('APP_SECRET_KEY')
+
+@app.context_processor
+def inject_icons():
+    # Injects these variables into all templates automatically
+    return dict(
+        favicon=url_for('static', filename='logo.png'),
+        about_icon=url_for('static', filename='genboi_icon_aboutpage.png')
+    )
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
@@ -31,7 +45,7 @@ def signin():
             print(session['active_name'])
             return redirect(url_for('terminal'))
         else:
-            return redirect(url_for('signin'))
+            return render_template('signin.html', message="INVALID_CREDENTIALS")
     return render_template('signin.html')
 
 @app.route('/signup', methods=['POST', 'GET'])
@@ -55,8 +69,7 @@ def register():
 
 @app.route('/about', methods=['POST', 'GET'])
 def about():
-    print
-    return render_template('about.html')
+    return render_template('about.html', location=data.get('city')+' | '+data.get('country'))
 
 @app.route('/terminal', methods=['POST', 'GET'])
 def terminal():# Default state

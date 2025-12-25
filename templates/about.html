@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="{{ favicon }}">
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="1"> 
     <title>Genboi | About</title>
     <style>
         :root {
@@ -131,10 +131,19 @@
         
         .nav-btn { text-decoration: none; color: #fff; border: 1px solid #333; padding: 8px 20px; border-radius: 6px; font-size: 0.7rem; transition: 0.2s; }
         .nav-btn:hover { background: var(--nv-green); color: #000; border-color: var(--nv-green); }
+
+        @media (max-width: 768px) {
+            .app-logo { font-size: 3rem; }
+            .row-4 { grid-template-columns: repeat(2, 1fr); }
+            .row-3 { grid-template-columns: repeat(1, 1fr); width: 100%; }
+            .live-dock { padding: 15px; flex-direction: column; gap: 15px; text-align: center; }
+            .stack-box { margin-bottom: 140px; }
+            .desc { font-size: 0.85rem; padding: 0 10px; }
+        }
     </style>
 </head>
 <body>
-
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Genboi Icon" style="width: 120px; margin-bottom: 20px;">
     <h1 class="app-logo">Genboi</h1>
     <p style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 4px; font-weight: bold;">NEURAL TERMINAL v25.00</p>
 
@@ -174,8 +183,8 @@
 
     <footer class="live-dock">
         <div>
-            <span class="time-display">{{ time }}</span>
-            <span class="meta-data">{{ date }}</span>
+            <span class="time-display" id="js-time">00:00:00</span>
+            <span class="meta-data" id="js-date">YYYY-MM-DD</span>
         </div>
         <div style="display: flex; align-items: center; gap: 30px;">
             <div class="uplink">
@@ -186,5 +195,21 @@
         </div>
     </footer>
 
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            // Time (HH:MM:SS)
+            const timeString = now.toLocaleTimeString('en-US', { hour12: false });
+            document.getElementById('js-time').textContent = timeString;
+
+            // Date (YYYY-MM-DD)
+            const dateString = now.toISOString().split('T')[0];
+            document.getElementById('js-date').textContent = dateString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Initialize immediately
+    </script>
 </body>
 </html>

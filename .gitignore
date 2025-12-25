@@ -1,2 +1,7 @@
+__pycache__/
+*.pyc
+instance/
 .env
-_pycache_
+genboi.db
+.env.example
+*.db

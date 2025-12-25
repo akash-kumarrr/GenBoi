@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="{{ favicon }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Profile | OS 2.0</title>
+    <title>Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -105,6 +106,11 @@
             border-color: var(--primary);
         }
 
+        .avatar-main svg {
+            width: 50px;
+            height: 50px;
+        }
+
         .status-badge {
             background: rgba(118, 185, 0, 0.1);
             color: var(--primary);
@@ -198,6 +204,12 @@
         }
 
         svg { width: 18px; height: 18px; }
+
+        @media (max-width: 480px) {
+            .profile-card { padding: 24px; width: 90vw; }
+            .actions { grid-template-columns: 1fr; }
+            .btn-full { grid-column: span 1; }
+        }
     </style>
 </head>
 <body>
@@ -218,7 +230,7 @@
         <div class="info-stack">
             <div class="info-row">
                 <span class="label">Operator</span>
-                <div class="value">{{ name }}</div>
+                <div class="value" style="text-transform: capitalize;">{{ name }}</div>
             </div>
 
             <div class="info-row">

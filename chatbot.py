@@ -2,7 +2,7 @@ import google.generativeai as genai
 
 genai.configure(api_key="AIzaSyCEZG1Lz-PER7J117LiO3WoL-P6blZmiIY")
 
-model = genai.GenerativeModel("gemini-2.5-flash-lite")
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 import re
 def gemini_to_html(text: str) -> str:
@@ -23,4 +23,3 @@ def gemini_to_html(text: str) -> str:
 def gemini_response(user_prompt):
     response = model.generate_content(user_prompt)
     return gemini_to_html(response.text)
-

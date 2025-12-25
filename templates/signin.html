@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="{{ favicon }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NVIDIA Nexus | Signin</title>
+    <title>GenBoi | Signin</title>
     <style>
         :root {
             --nv-green: #76b900;
@@ -28,7 +29,8 @@
         .hider-check { display: none; }
 
         .portal-wrapper {
-            width: 380px;
+            width: 90%;
+            max-width: 380px;
             background: var(--nv-card);
             border: 1px solid var(--nv-border);
             border-radius: 24px;
@@ -74,6 +76,15 @@
         input:focus { border-bottom-color: var(--nv-green); }
         input::placeholder { color: #444; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 1px; }
 
+        /* Fix for browser autofill white background */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px var(--nv-card) inset !important;
+            -webkit-text-fill-color: white !important;
+        }
+
         .eye-btn {
             position: absolute;
             right: 0;
@@ -86,10 +97,7 @@
 
         .eye-open, .eye-closed { position: absolute; width: 100%; fill: none; stroke: #fff; stroke-width: 2; }
         .eye-open { opacity: 0; }
-        .pwd-text { display: none; }
 
-        .hider-check:checked ~ .pwd-pass { display: none; }
-        .hider-check:checked ~ .pwd-text { display: block; }
         .hider-check:checked ~ .eye-btn .eye-open { opacity: 1; stroke: var(--nv-green); }
         .hider-check:checked ~ .eye-btn .eye-closed { opacity: 0; }
 
@@ -132,6 +140,14 @@
         }
 
         .toggle-link:hover { color: #fff; }
+
+        .form-error {
+            color: #ff4d4f;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -146,10 +162,22 @@
                 <div class="input-group">
                     <input type="checkbox" id="l-eye" class="hider-check">
                     <input type="password" name="password" class="pwd-pass" placeholder="Password" required>
-                    <input type="text" class="pwd-text" placeholder="Password">
+                    <label for="l-eye" class="eye-btn">
+                        <svg class="eye-closed" viewBox="0 0 24 24">
+                            <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7"/>
+                            <path d="M1 1l22 22"/>
+                        </svg>
+                        <svg class="eye-open" viewBox="0 0 24 24">
+                            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </label>
                 </div>
                 
                 <div class="spacer"></div> 
+                {% if message == "INVALID_CREDENTIALS" %}
+                    <div class="form-error">Invalid Credentials</div>
+                {% endif %}
                 <div class="btn-container">
                     <button type="submit" class="action-btn">Signin</button>
                 </div>
@@ -158,5 +186,13 @@
         </div>
     </div>
 
+    <script>
+        const toggler = document.getElementById('l-eye');
+        const passwordInput = document.querySelector('.pwd-pass');
+
+        toggler.addEventListener('change', function() {
+            passwordInput.type = this.checked ? 'text' : 'password';
+        });
+    </script>
 </body>
 </html>

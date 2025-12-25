@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="{{ favicon }}">
 <meta charset="UTF-8">
-<title>Nexus Core | Edit Profile</title>
+<title>{{ name }} | Edit Profile</title>
 
 <style>
 :root {
@@ -77,18 +78,6 @@ input:focus {
     display: none;
 }
 
-.pass-text {
-    display: none;
-}
-
-#togglePass:checked ~ .pass-password {
-    display: none;
-}
-
-#togglePass:checked ~ .pass-text {
-    display: block;
-}
-
 .eye-btn {
     position: absolute;
     right: 14px;
@@ -148,6 +137,11 @@ input:focus {
 .btn-cancel { background: transparent; color: white; border: 1px solid var(--nv-border); }
 
 .btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
+
+@media (max-width: 480px) {
+    .edit-card { padding: 25px; width: 90vw; }
+    .button-group { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 
@@ -160,7 +154,7 @@ input:focus {
 
 <div class="form-group">
 <label>Full Name</label>
-<input type="text" name="name" value="{{ name }}" required>
+<input type="text" name="name" value="{{ name }}" required style="text-transform: capitalize;">
 </div>
 
 <div class="form-group">
@@ -175,7 +169,6 @@ input:focus {
 <input type="checkbox" id="togglePass">
 
 <input type="password" class="pass-password" name="password" value="{{ password }}" required>
-<input type="text" class="pass-text" value="{{ password }}">
 
 <label for="togglePass" class="eye-btn">
     <!-- eye -->
@@ -200,5 +193,13 @@ input:focus {
 </form>
 </div>
 
+<script>
+    const toggler = document.getElementById('togglePass');
+    const passwordInput = document.querySelector('.pass-password');
+
+    toggler.addEventListener('change', function() {
+        passwordInput.type = this.checked ? 'text' : 'password';
+    });
+</script>
 </body>
 </html>
