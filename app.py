@@ -1,15 +1,16 @@
 from flask import redirect, url_for, Flask, render_template, request, session, jsonify
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 from server import *
 from chatbot import *
-from dotenv import load_dotenv
-import os 
 from datetime import datetime, date
 import requests
 
 response = requests.get('https://ipinfo.io/json')
 data = response.json()
-
-load_dotenv()
 
 create_table()
 
