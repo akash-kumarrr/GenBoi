@@ -5,7 +5,7 @@ import os
 load_dotenv()
 
 # Handle potential postgres:// vs postgresql:// protocol mismatch
-db_connection_str = os.getenv('conn_str')
+db_connection_str = os.getenv('CONN_STR')
 
 if not db_connection_str:
     print("WARNING: 'conn_str' environment variable is not set. Using file-based SQLite (genboi.db).")
