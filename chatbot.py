@@ -1,10 +1,7 @@
 import google.generativeai as genai
-<<<<<<< HEAD
 import os 
-=======
 import os  
 from dotenv import load_dotenv
->>>>>>> 2b231e0 (change in key)
 
 load_dotenv()
 
